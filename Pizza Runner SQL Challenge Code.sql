@@ -81,9 +81,9 @@ QUESTION #5
 
 ```sql
 SELECT c.customer_id, SUM(CASE WHEN c.exclusions = '' AND c.extras = ''
-THEN 1 ELSE 0 END) AS unchanged,SUM(CASE WHEN c.exclusions != ''
+ THEN 1 ELSE 0 END) AS unchanged,SUM(CASE WHEN c.exclusions != ''
 OR c.extras != '' 
-		   			 THEN 1 ELSE 0 END )AS changed
+ THEN 1 ELSE 0 END )AS changed
 FROM customer_orders_1 c
 JOIN runner_orders_1 r
 ON c.order_id = r.order_id
@@ -92,3 +92,8 @@ GROUP BY c.customer_id
 ORDER BY c.customer_id;
 
 **Answer**
+Customer 101 ordered two pizzas both unchanged
+Customer 102 ordered one pizza and was unchnaged
+Customer 103 had no delivered pizza and 3 changes
+Customer 104 had no delivered pizza and 2 changes
+Customer 105 had no delivered pizza and 1 change
