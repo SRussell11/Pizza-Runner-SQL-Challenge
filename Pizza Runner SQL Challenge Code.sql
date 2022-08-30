@@ -80,12 +80,9 @@ QUESTION #5
 --For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
 
 ```sql
-SELECT c.customer_id, 
-	   SUM(CASE WHEN c.exclusions = '' 
-		   			AND c.extras = ''
-		   		    THEN 1 ELSE 0 END) AS unchanged,
-	   SUM(CASE WHEN c.exclusions != ''
-		   			 OR c.extras != '' 
+SELECT c.customer_id, SUM(CASE WHEN c.exclusions = '' AND c.extras = ''
+THEN 1 ELSE 0 END) AS unchanged,SUM(CASE WHEN c.exclusions != ''
+OR c.extras != '' 
 		   			 THEN 1 ELSE 0 END )AS changed
 FROM customer_orders_1 c
 JOIN runner_orders_1 r
@@ -93,3 +90,5 @@ ON c.order_id = r.order_id
 WHERE r.distance IS NOT NULL
 GROUP BY c.customer_id
 ORDER BY c.customer_id;
+
+**Answer**
